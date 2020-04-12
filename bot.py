@@ -25,7 +25,6 @@ Staff Commands\n
     choose [name] - chooses enrolled players from tournament with the name [name] on who will play, tournament must be closed to use choose.
 ```"""
 client = commands.Bot(command_prefix = ("!t ", "!t", "!"), case_insensitive = True, help_command=None)
-os.environ['DATABASE_URL'] = "postgres://aaofhobjbxhzzi:82ca8b50a5fb883eae021ffb3a7b49e98f309699476564d7d9b5162f5e71e77d@ec2-34-200-116-132.compute-1.amazonaws.com:5432/d54istiep78bns"
 
 isProd = os.environ.get('IS_HEROKU', None)
 if isProd:
