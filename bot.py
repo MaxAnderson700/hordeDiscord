@@ -27,6 +27,10 @@ Staff Commands\n
 client = commands.Bot(command_prefix = ("!t ", "!t", "!"), case_insensitive = True, help_command=None)
 os.environ['DATABASE_URL'] = "postgres://aaofhobjbxhzzi:82ca8b50a5fb883eae021ffb3a7b49e98f309699476564d7d9b5162f5e71e77d@ec2-34-200-116-132.compute-1.amazonaws.com:5432/d54istiep78bns"
 
+isProd = os.environ.get('IS_HEROKU', None)
+if isProd:
+    botKey = os.environ.get('BOT_KEY', None)
+
 ctx = ssl.create_default_context(cafile='')
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
@@ -229,4 +233,4 @@ async def choose_error(ctx, error):
 
 
 client.loop.run_until_complete(create_db_pool())
-client.run('Njc3Mjg2NTQ2MTgwODAwNTI1.XkSC5Q.-Lsa8e3SlQuAUz9tenwOwdhhlvY')
+client.run(botKey)
