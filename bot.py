@@ -18,6 +18,7 @@ Player Commands:\n
     compete - gives player tournament player role and allows the to enroll into tournaments, do again to take away role.\n
     enroll [tournament name] - enrolls player into a tournament with the name [name]\n
     revoke [tournament name] - unenrolls a player from a tournament with the name [name]\n
+    date [tournament name] - displays the date of the tournament with the name [name]\n
 Staff Commands\n
     createtournament [name] [type] [date] - Creates a tournament with the name [name], as the type [type], and on the date [date]\n
         [type] - TW-SOLOS, TW-DUOS, TW-TRIOS, TW-SQUADS, SG-SOLOS, SG-DUOS\n
