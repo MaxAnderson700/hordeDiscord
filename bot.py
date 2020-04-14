@@ -19,7 +19,7 @@ Player Commands:\n
     enroll [tournament name] - enrolls player into a tournament with the name [name]\n
     revoke [tournament name] - unenrolls a player from a tournament with the name [name]\n
 Staff Commands\n
-    createtournament [name] [type] [date] - Creates a tournament with the name [name], as the type [type], and on the date [date]\n
+    createtournament [name] [type] - Creates a tournament with the name [name] and as the type [type]\n
         [type] - TW-SOLOS, TW-DUOS, TW-TRIOS, TW-SQUADS, SG-SOLOS, SG-DUOS\n
         [date] - DD/MM/YY \n
     close [name] - closes the tournament with the name [name], ends enrollment.\n
@@ -76,7 +76,7 @@ async def compete(ctx):
 typedict = {"<Record type='TW-SOLOS'>":8, "<Record type='TW-DUOS'>":8, "<Record type='TW-TRIOS'>":4, "<Record type='TW-SQUADS'>":4, "<Record type='SG-SOLOS'>":8,"<Record type='SG-DUOS'>":4}
 
 @client.command()
-async def createtournament(ctx, name, type, date):
+async def createtournament(ctx, name, type):
     author = ctx.message.author
     staff = discord.utils.get(author.guild.roles, id=699345791478792292)
     if staff in ctx.author.roles:
@@ -84,8 +84,8 @@ async def createtournament(ctx, name, type, date):
         if not (s):
             if f"<Record type='{type}'>" in typedict:
                 #await client.pg_con.execute("ALTER TABLE tournaments ADD COLUMN ID SERIAL PRIMARY KEY;")
-                await ctx.send(f"Creating tournament {name}, as {type}, on {date}")
-                await client.pg_con.execute("INSERT INTO tournaments (name, type, status, players_enrolled, date) VALUES ($1, $2, $3, ARRAY[]::text[], $4)", name, type, "open", date)
+                await ctx.send(f"Creating tournament {name}, as {type}")
+                await client.pg_con.execute("INSERT INTO tournaments (name, type, status, players_enrolled) VALUES ($1, $2, $3, ARRAY[]::text[])", name, type, "open")
             else:
                 await ctx.send("That type of tournament doesn't exist!")
         else:
@@ -96,7 +96,7 @@ async def createtournament(ctx, name, type, date):
 @createtournament.error
 async def createtournament_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("Required argument missing, be sure to specify the name, type, and date of the tournament you would like to create!")
+        await ctx.send("Required argument missing, be sure to specify the name and type of the tournament you would like to create!")
 
 @client.command()
 async def enroll(ctx, name):
@@ -234,8 +234,8 @@ async def choose_error(ctx, error):
 @client.commmand()
 async def date(ctx, name):
     tname = await client.pg_con.fetchrow("SELECT name FROM tournaments WHERE name = $1", name)
-    if (tname)
-      tdate = await client.pg_con.fetch("SELECT date FROM tournaments WHERE name = $1", name)
+    if (tname):
+        tdate = await client.pg_con.fetch("SELECT date FROM tournaments WHERE name = $1", name)
         await ctx.send(f"The closing date of {tname} is {date}")
     else:
         await ctx.send(f"The tournament {name} does not exist!") 
