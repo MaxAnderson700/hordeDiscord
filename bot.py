@@ -18,6 +18,7 @@ Player Commands:\n
     compete - gives player tournament player role and allows the to enroll into tournaments, do again to take away role.\n
     enroll [tournament name] - enrolls player into a tournament with the name [name]\n
     revoke [tournament name] - unenrolls a player from a tournament with the name [name]\n
+    date [tournament name] - gives the date at which the tournament [name] is taking place \n
 Staff Commands\n
     createtournament [name] [type] - Creates a tournament with the name [name] and as the type [type]\n
         [type] - TW-SOLOS, TW-DUOS, TW-TRIOS, TW-SQUADS, SG-SOLOS, SG-DUOS\n
@@ -231,7 +232,7 @@ async def choose_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send("Required argument missing, be sure to specify the name of the tournament you would like to choose players for!")
 
-@client.commmand()
+@client.command()
 async def date(ctx, name):
     tname = await client.pg_con.fetchrow("SELECT name FROM tournaments WHERE name = $1", name)
     if (tname):
