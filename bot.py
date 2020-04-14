@@ -8,7 +8,7 @@ import os
 import ssl
 
 commands = discord.ext.commands
-
+#Maximum Anderdrive
 helpmsg = """```HordeBot Created By Plat#3996\n
 Prefix:\n
     !t[command] or !t [command], either will work.\n
