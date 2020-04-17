@@ -51,6 +51,10 @@ async def on_command_error(ctx, error):
     else:
         print(error)
 
+@client.event
+async def on_message(ctx):
+    print('hi')
+
 @client.command()
 async def help(ctx):
     await ctx.send(helpmsg)
@@ -58,6 +62,11 @@ async def help(ctx):
 @client.command()
 async def ping(ctx):
     await ctx.send(f'Bot latency is {round(client.latency * 1000)}ms')
+
+@client.command()
+async def clean(ctx, limit):
+    if ctx.message.author.id == 350624739997384705:
+        await ctx.channel.purge(limit=limit)
 
 @client.command()
 async def compete(ctx):
@@ -238,6 +247,7 @@ async def date(ctx, name):
     if (tname):
         tdate = await client.pg_con.fetchrow("SELECT date FROM tournaments WHERE name = $1", name)
         await ctx.send(f"The closing date of {tname[0]} is {tdate[0]}")
+        print(tdate[0])
     else:
         await ctx.send(f"The tournament {name} does not exist!") 
 
