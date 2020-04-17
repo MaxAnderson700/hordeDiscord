@@ -64,7 +64,7 @@ async def ping(ctx):
     await ctx.send(f'Bot latency is {round(client.latency * 1000)}ms')
 
 @client.command()
-async def clean(ctx, limit):
+async def clean(ctx, limit: int):
     if ctx.message.author.id == 350624739997384705:
         await ctx.channel.purge(limit=limit)
     else:
