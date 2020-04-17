@@ -237,7 +237,7 @@ async def date(ctx, name):
     tname = await client.pg_con.fetchrow("SELECT name FROM tournaments WHERE name = $1", name)
     if (tname):
         tdate = await client.pg_con.fetch("SELECT date FROM tournaments WHERE name = $1", name)
-        await ctx.send(f"The closing date of {tname[0]} is {tdate[0]}")
+        await ctx.send(f"The closing date of {tname[0]} is {tdate[date]}")
     else:
         await ctx.send(f"The tournament {name} does not exist!") 
 
