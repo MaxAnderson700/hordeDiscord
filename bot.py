@@ -55,14 +55,14 @@ async def on_command_error(ctx, error):
     else:
         print(error)
 
-@client.event
-async def on_message(ctx):
-    if ctx.channel.id == 699355128695881761:
-        if ctx.author.id != platid:
-            if str(ctx.content) is '!tcompete' or '!tcompete':
-                print('pass')
-            else:
-                await ctx.delete()
+#@client.event
+#async def on_message(ctx):
+#    if ctx.channel.id == 699355128695881761:
+#        if ctx.author.id != platid:
+#            if str(ctx.content) is '!tcompete' or '!t compete':
+#                print('pass')
+#            else:
+#                await ctx.delete()
 
 @client.command()
 async def help(ctx):
@@ -86,6 +86,8 @@ async def compete(ctx):
     if role in ctx.author.roles:
         await author.remove_roles(role)
         await ctx.send("Rank has been removed, Do !tcompete again to be readded!")
+        await ctx.message.delete()
+
     else:
         await author.add_roles(role)
         await ctx.send("Rank has been added, You are now a tournament player!")
@@ -93,7 +95,6 @@ async def compete(ctx):
 
         if not user:
             await client.pg_con.execute("INSERT INTO players (user_id, tournaments_played, enroll_score) VALUES ($1, 0, 1)", str(author.id))
-    await ctx.message.delete()
 
 typedict = {"<Record type='TW-SOLOS'>":8, "<Record type='TW-DUOS'>":8, "<Record type='TW-TRIOS'>":4, "<Record type='TW-SQUADS'>":4, "<Record type='SG-SOLOS'>":16,"<Record type='SG-DUOS'>":8}
 
