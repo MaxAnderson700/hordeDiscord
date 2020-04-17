@@ -67,6 +67,8 @@ async def ping(ctx):
 async def clean(ctx, limit):
     if ctx.message.author.id == 350624739997384705:
         await ctx.channel.purge(limit=limit)
+    else:
+        print('no perms lol')
 
 @client.command()
 async def compete(ctx):
