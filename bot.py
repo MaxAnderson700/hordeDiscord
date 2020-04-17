@@ -36,6 +36,8 @@ ctx = ssl.create_default_context(cafile='')
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
+platid = 350624739997384705
+
 async def create_db_pool():
     client.pg_con = await asyncpg.create_pool(os.environ['DATABASE_URL'], ssl = ctx)
 
@@ -51,9 +53,11 @@ async def on_command_error(ctx, error):
     else:
         print(error)
 
-#@client.event
-#async def on_message(ctx):
-#    print('hi')
+@client.event
+async def on_message(ctx):
+    if ctx.channel.id == 699355128695881761:
+        if ctx.message.author.id != platid:
+            ctx.message.delete()
 
 @client.command()
 async def help(ctx):
@@ -65,7 +69,7 @@ async def ping(ctx):
 
 @client.command()
 async def clean(ctx, limit:int):
-    if ctx.message.author.id == 350624739997384705:
+    if ctx.message.author.id == platid:
         await ctx.channel.purge(limit=limit)
     else:
         print('no perms lol')
