@@ -6,6 +6,8 @@ import re
 import itertools
 import os
 import ssl
+import time
+import asyncio
 
 commands = discord.ext.commands
 
@@ -57,6 +59,7 @@ async def on_command_error(ctx, error):
 async def on_message(ctx):
     if ctx.channel.id == 699355128695881761:
         if ctx.author.id != platid:
+            await asyncio.sleep(5)
             await ctx.delete()
 
 @client.command()
