@@ -74,7 +74,7 @@ async def compete(ctx):
         if not user:
             await client.pg_con.execute("INSERT INTO players (user_id, tournaments_played, enroll_score) VALUES ($1, 0, 1)", str(author.id))
 
-typedict = {"<Record type='TW-SOLOS'>":8, "<Record type='TW-DUOS'>":8, "<Record type='TW-TRIOS'>":4, "<Record type='TW-SQUADS'>":4, "<Record type='SG-SOLOS'>":8,"<Record type='SG-DUOS'>":4}
+typedict = {"<Record type='TW-SOLOS'>":8, "<Record type='TW-DUOS'>":8, "<Record type='TW-TRIOS'>":4, "<Record type='TW-SQUADS'>":4, "<Record type='SG-SOLOS'>":16,"<Record type='SG-DUOS'>":8}
 
 @client.command()
 async def createtournament(ctx, name, type, date):
