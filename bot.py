@@ -59,8 +59,8 @@ async def on_command_error(ctx, error):
 async def on_message(ctx):
     if ctx.channel.id == 699355128695881761:
         if ctx.author.id != platid:
-            if ctx.content is '!tcompete' or '!tcompete':
-                pass
+            if str(ctx.content) is '!tcompete' or '!tcompete':
+                print('pass')
             else:
                 await ctx.delete()
 
