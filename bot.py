@@ -59,8 +59,10 @@ async def on_command_error(ctx, error):
 async def on_message(ctx):
     if ctx.channel.id == 699355128695881761:
         if ctx.author.id != platid:
-            await asyncio.sleep(5)
-            await ctx.delete()
+            if ctx.content is '!tcompete' or '!tcompete':
+                pass
+            else:
+                await ctx.delete()
 
 @client.command()
 async def help(ctx):
@@ -91,6 +93,7 @@ async def compete(ctx):
 
         if not user:
             await client.pg_con.execute("INSERT INTO players (user_id, tournaments_played, enroll_score) VALUES ($1, 0, 1)", str(author.id))
+    await ctx.message.delete()
 
 typedict = {"<Record type='TW-SOLOS'>":8, "<Record type='TW-DUOS'>":8, "<Record type='TW-TRIOS'>":4, "<Record type='TW-SQUADS'>":4, "<Record type='SG-SOLOS'>":16,"<Record type='SG-DUOS'>":8}
 
