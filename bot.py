@@ -51,9 +51,9 @@ async def on_command_error(ctx, error):
     else:
         print(error)
 
-@client.event
-async def on_message(ctx):
-    print('hi')
+#@client.event
+#async def on_message(ctx):
+#    print('hi')
 
 @client.command()
 async def help(ctx):
