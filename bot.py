@@ -56,8 +56,8 @@ async def on_command_error(ctx, error):
 @client.event
 async def on_message(ctx):
     if ctx.channel.id == 699355128695881761:
-        if ctx.message.author.id != platid:
-            ctx.message.delete()
+        if ctx.author.id != platid:
+            ctx.delete()
 
 @client.command()
 async def help(ctx):
