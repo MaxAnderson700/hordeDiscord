@@ -8,7 +8,7 @@ import os
 import ssl
 
 commands = discord.ext.commands
-
+#Maximum Anderdicc
 helpmsg = """```HordeBot Created By Plat#3996\n
 Prefix:\n
     !t[command] or !t [command], either will work.\n
@@ -79,7 +79,7 @@ typedict = {"<Record type='TW-SOLOS'>":8, "<Record type='TW-DUOS'>":8, "<Record 
 @client.command()
 async def createtournament(ctx, name, type, date):
     author = ctx.message.author
-    staff = discord.utils.get(author.guild.roles, id=673787798527934465)
+    staff = discord.utils.get(author.guild.roles, id=699345791478792292)
     if staff in ctx.author.roles:
         s = await client.pg_con.fetchrow("SELECT status FROM tournaments WHERE name = $1", name)
         if not (s):
@@ -168,7 +168,7 @@ async def revoke_error(ctx, error):
 @client.command()
 async def close(ctx, name):
     author = ctx.message.author
-    staff = discord.utils.get(author.guild.roles, id=673787798527934465)
+    staff = discord.utils.get(author.guild.roles, id=699345791478792292)
     if staff in ctx.author.roles:
         tname = await client.pg_con.fetchrow("SELECT name FROM tournaments WHERE name = $1", name)
         if (tname):
@@ -191,7 +191,7 @@ async def close_error(ctx, error):
 @client.command()
 async def choose(ctx, name):
     author = ctx.message.author
-    staff = discord.utils.get(author.guild.roles, id=673787798527934465)
+    staff = discord.utils.get(author.guild.roles, id=699345791478792292)
     if staff in ctx.author.roles:
         q =  await client.pg_con.fetchrow("SELECT type FROM tournaments WHERE name = $1", name)
         tType = str(q)
